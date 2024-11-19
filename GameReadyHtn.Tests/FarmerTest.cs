@@ -43,6 +43,15 @@ public class FarmerTest {
                         },
                     ],
                 },
+                new HtnPrimitiveTask("Sleep") {
+                    Effects = [
+                        new HtnEffect() {
+                            State = FarmerState.Energy,
+                            Operation = HtnOperation.IncreaseBy,
+                            Value = 5,
+                        },
+                    ],
+                },
             ],
         },
     };
