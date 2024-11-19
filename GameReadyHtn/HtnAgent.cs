@@ -71,6 +71,7 @@ public class HtnAgent(object? Name = null) {
     /// Returns true if the task is valid for this agent.
     /// </summary>
     public bool IsTaskValid(HtnTask Task) {
+        SenseStates();
         return IsTaskValid(Task, States);
     }
 }
