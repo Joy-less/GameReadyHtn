@@ -1,9 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <VersionPrefix>1.0</VersionPrefix>
+    <TargetFrameworks>net7.0;net8.0;net9.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <WarningLevel>9999</WarningLevel>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Game Ready Htn</Title>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Description>An easy-to-use implementation of Hierarchical Task Networks.</Description>
+    <PackageProjectUrl>https://github.com/Joy-less/GameReadyHtn</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Joy-less/GameReadyHtn</RepositoryUrl>
+    <PackageIcon>Icon.jpg</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>HTN, AI, plan</PackageTags>
+    <Authors>Joyless</Authors>
   </PropertyGroup>
-
+  <ItemGroup>
+    <None Include="..\Assets\Icon.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
