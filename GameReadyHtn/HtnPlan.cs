@@ -52,6 +52,9 @@ public class HtnPlan {
     /// Attempts to find a plan that completes the tasks in order using backtracking.
     /// </summary>
     public static HtnPlan? Find(HtnAgent Agent) {
+        // Update agent states from sensors
+        Agent.SenseStates();
+
         // Create first step from initial states
         HtnStep FirstStep = new() {
             Previous = null,

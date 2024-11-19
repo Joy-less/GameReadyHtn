@@ -18,6 +18,10 @@ public class HtnAgent(object? Name = null) {
     /// The root task the agent will perform, changing its states.
     /// </summary>
     public required HtnTask Task;
+    /// <summary>
+    /// The state sensors the agent uses to dynamically update its states.
+    /// </summary>
+    public List<HtnSensor> Sensors = [];
 
     /// <summary>
     /// Gets the current value of the given state, casting it to the given type.
@@ -34,8 +38,16 @@ public class HtnAgent(object? Name = null) {
     /// <summary>
     /// Sets the current value of the given state.
     /// </summary>
-    public void SetState(object State, object? Value) {
-        States[State] = Value;
+    public void SetState(object State, HtnValue Value) {
+        States[State] = Value.Evaluate(States);
+    }
+    /// <summary>
+    /// Updates the agent's states from its sensors.
+    /// </summary>
+    public void SenseStates() {
+        foreach (HtnSensor Sensor in Sensors) {
+            SetState(Sensor.State, Sensor.GetValue());
+        }
     }
     /// <summary>
     /// Attempts to find a plan that completes the tasks in order using backtracking.
