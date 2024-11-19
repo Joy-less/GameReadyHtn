@@ -114,17 +114,17 @@ public class HtnStateOperationValue() : HtnValue {
 /// <summary>
 /// The value returned from a function.
 /// </summary>
-public class HtnSensorValue() : HtnValue {
+public class HtnDynamicValue() : HtnValue {
     /// <summary>
-    /// A function that returns the value.
+    /// The function that returns the value.
     /// </summary>
     public required Func<object?> GetValue;
 
     /// <summary>
-    /// Constructs a <see cref="HtnSensorValue"/> in-line.
+    /// Constructs a <see cref="HtnDynamicValue"/> in-line.
     /// </summary>
     [SetsRequiredMembers]
-    public HtnSensorValue(Func<object?> GetValue) : this() {
+    public HtnDynamicValue(Func<object?> GetValue) : this() {
         this.GetValue = GetValue;
     }
     /// <summary>
