@@ -10,7 +10,7 @@ public abstract class HtnValue {
     /// <summary>
     /// Returns the final value to be used.
     /// </summary>
-    public abstract object? Evaluate(IReadOnlyDictionary<object, object?> States);
+    public abstract object? Evaluate(IDictionary<object, object?> States);
 
 #pragma warning disable CS1591
     public static implicit operator HtnValue(bool Value) => new HtnConstantValue(Value);
@@ -51,7 +51,7 @@ public class HtnConstantValue() : HtnValue {
     /// <summary>
     /// Returns the constant value.
     /// </summary>
-    public override object? Evaluate(IReadOnlyDictionary<object, object?> States) {
+    public override object? Evaluate(IDictionary<object, object?> States) {
         return Value;
     }
 }
@@ -74,7 +74,7 @@ public class HtnStateValue() : HtnValue {
     /// <summary>
     /// Returns the state value.
     /// </summary>
-    public override object? Evaluate(IReadOnlyDictionary<object, object?> States) {
+    public override object? Evaluate(IDictionary<object, object?> States) {
         return States.GetValueOrDefault(State);
     }
 }
@@ -107,7 +107,7 @@ public class HtnStateOperationValue() : HtnValue {
     /// <summary>
     /// Returns the state value after the operation.
     /// </summary>
-    public override object? Evaluate(IReadOnlyDictionary<object, object?> States) {
+    public override object? Evaluate(IDictionary<object, object?> States) {
         return Operation.Operate(States.GetValueOrDefault(State), Operand.Evaluate(States));
     }
 }
@@ -130,7 +130,7 @@ public class HtnDynamicValue() : HtnValue {
     /// <summary>
     /// Returns the state value after the operation.
     /// </summary>
-    public override object? Evaluate(IReadOnlyDictionary<object, object?> States) {
+    public override object? Evaluate(IDictionary<object, object?> States) {
         return GetValue();
     }
 }

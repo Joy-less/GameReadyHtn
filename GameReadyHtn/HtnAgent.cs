@@ -58,7 +58,7 @@ public class HtnAgent(object? Name = null) {
     /// <summary>
     /// Returns true if the task is valid for this agent with the given states.
     /// </summary>
-    public bool IsTaskValid(HtnTask Task, IReadOnlyDictionary<object, object?> States) {
+    public bool IsTaskValid(HtnTask Task, IDictionary<object, object?> States) {
         if (Task.IsValidOverride(this) is bool Override) {
             return Override;
         }

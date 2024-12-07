@@ -1,4 +1,6 @@
-﻿namespace GameReadyHtn;
+﻿using System;
+
+namespace GameReadyHtn;
 
 /// <summary>
 /// A sequence of primitive tasks a <see cref="HtnAgent"/> could perform.
@@ -16,37 +18,6 @@ public class HtnPlan {
     /// The agent's predicted states after the plan is performed.
     /// </summary>
     public required Dictionary<object, object?> PredictedStates;
-
-    /// <summary>
-    /// Executes each task if valid and successful.
-    /// </summary>
-    /// <returns>true if finished.</returns>
-    public bool Execute(HtnAgent Agent, Func<HtnTask, bool> ExecuteTask) {
-        foreach (HtnTask Task in Tasks) {
-            if (!Agent.IsTaskValid(Task)) {
-                return false;
-            }
-            if (!ExecuteTask(Task)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    /// <summary>
-    /// Executes each task if valid and successful.
-    /// </summary>
-    /// <returns>true if finished.</returns>
-    public async Task<bool> ExecuteAsync(HtnAgent Agent, Func<HtnTask, Task<bool>> ExecuteTaskAsync) {
-        foreach (HtnTask Task in Tasks) {
-            if (!Agent.IsTaskValid(Task)) {
-                return false;
-            }
-            if (!await ExecuteTaskAsync(Task)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /// <summary>
     /// Attempts to find a plan that completes the tasks in order using backtracking.
@@ -130,5 +101,31 @@ public class HtnPlan {
             Tasks = FinalStep.GetTasks(),
             PredictedStates = FinalStep.PredictedStates,
         };
+    }
+
+    /// <summary>
+    /// Tries to execute each task in the plan by calling <see cref="HtnTask.ExecuteAsync"/> and updating the agent's states.
+    /// </summary>
+    /// <returns>Whether the plan was fully executed successfully.</returns>
+    public async Task<bool> ExecuteAsync() {
+        foreach (HtnPrimitiveTask Task in Tasks) {
+            // Cancel if task is invalid
+            if (!Agent.IsTaskValid(Task)) {
+                return false;
+            }
+            // Execute task and cancel if failed
+            if (!await Task.ExecuteAsync()) {
+                return false;
+            }
+            // Apply the task's effects
+            Task.UpdateStates(Agent.States);
+            // Update states from sensors
+            Agent.SenseStates();
+        }
+        return true;
+    }
+    /// <inheritdoc cref="ExecuteAsync()"/>
+    public bool Execute() {
+        return ExecuteAsync().GetAwaiter().GetResult();
     }
 }

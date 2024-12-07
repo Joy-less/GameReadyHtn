@@ -17,6 +17,11 @@ public abstract class HtnTask(object? Name = null) {
     /// </summary>
     /// <remarks>By default, always returns null.</remarks>
     public Func<HtnAgent, bool?> IsValidOverride = _ => null;
+    /// <summary>
+    /// The function that asynchronously executes the task and returns true if successfully completed.
+    /// </summary>
+    /// <remarks>By default, always returns true.</remarks>
+    public Func<Task<bool>> ExecuteAsync = () => Task.FromResult(true);
 }
 /// <summary>
 /// A task that runs a raw action with a list of effects.
@@ -28,13 +33,19 @@ public class HtnPrimitiveTask(object? Name = null) : HtnTask(Name) {
     public required List<HtnEffect> Effects;
 
     /// <summary>
-    /// Gets the predicted states after the action is performed.
+    /// Changes the given states by the effects of the task.
     /// </summary>
-    public Dictionary<object, object?> PredictStates(IReadOnlyDictionary<object, object?> States) {
-        Dictionary<object, object?> PredictedStates = new(States);
+    public void UpdateStates(IDictionary<object, object?> States) {
         foreach (HtnEffect Effect in Effects) {
-            PredictedStates[Effect.State] = Effect.PredictState(PredictedStates);
+            States[Effect.State] = Effect.PredictState(States);
         }
+    }
+    /// <summary>
+    /// Gets the predicted states after the task is performed.
+    /// </summary>
+    public Dictionary<object, object?> PredictStates(IDictionary<object, object?> States) {
+        Dictionary<object, object?> PredictedStates = new(States);
+        UpdateStates(PredictedStates);
         return PredictedStates;
     }
 }
