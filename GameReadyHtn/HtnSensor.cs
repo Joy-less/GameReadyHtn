@@ -10,11 +10,11 @@ public class HtnSensor() {
     /// <summary>
     /// The state to change.
     /// </summary>
-    public required object State;
+    public required object State { get; set; }
     /// <summary>
     /// The function that returns the value.
     /// </summary>
-    public required Func<HtnValue> GetValue;
+    public required Func<HtnValue> GetValue { get; set; }
 
     /// <summary>
     /// Constructs a <see cref="HtnSensor"/> in-line.

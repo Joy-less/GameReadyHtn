@@ -9,19 +9,19 @@ public class HtnAgent(object? Name = null) {
     /// <summary>
     /// An optional identifier.
     /// </summary>
-    public object? Name = Name;
+    public object? Name { get; set; } = Name;
     /// <summary>
     /// The values describing the agent's current state.
     /// </summary>
-    public required ConcurrentDictionary<object, object?> States;
+    public required ConcurrentDictionary<object, object?> States { get; set; }
     /// <summary>
     /// The root task the agent will perform, changing its states.
     /// </summary>
-    public required HtnTask Task;
+    public required HtnTask Task { get; set; }
     /// <summary>
     /// The state sensors the agent uses to dynamically update its states.
     /// </summary>
-    public List<HtnSensor> Sensors = [];
+    public List<HtnSensor> Sensors { get; set; } = [];
 
     /// <summary>
     /// Gets the current value of the given state, casting it to the given type.

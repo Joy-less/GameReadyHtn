@@ -9,20 +9,20 @@ public class HtnCondition() {
     /// <summary>
     /// The state to compare.
     /// </summary>
-    public required object State;
+    public required object State { get; set; }
     /// <summary>
     /// How to compare the state value and value.
     /// </summary>
-    public required HtnComparison Comparison;
+    public required HtnComparison Comparison { get; set; }
     /// <summary>
     /// The value to compare the state with.
     /// </summary>
-    public required HtnValue Value;
+    public required HtnValue Value { get; set; }
     /// <summary>
     /// If true, plans that get the agent closer to the condition will be considered, even if they won't reach it. The values must be numbers.<br/>
     /// Default: false
     /// </summary>
-    public bool BestEffort = false;
+    public bool BestEffort { get; set; } = false;
 
     /// <summary>
     /// Constructs a <see cref="HtnCondition"/> in-line.

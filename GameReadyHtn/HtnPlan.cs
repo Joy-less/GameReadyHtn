@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GameReadyHtn;
+﻿namespace GameReadyHtn;
 
 /// <summary>
 /// A sequence of primitive tasks a <see cref="HtnAgent"/> could perform.
@@ -9,15 +7,15 @@ public class HtnPlan {
     /// <summary>
     /// The agent the plan was created for.
     /// </summary>
-    public required HtnAgent Agent;
+    public required HtnAgent Agent { get; set; }
     /// <summary>
     /// The actions that should be performed to reach the goal.
     /// </summary>
-    public required List<HtnPrimitiveTask> Tasks;
+    public required List<HtnPrimitiveTask> Tasks { get; set; }
     /// <summary>
     /// The agent's predicted states after the plan is performed.
     /// </summary>
-    public required Dictionary<object, object?> PredictedStates;
+    public required Dictionary<object, object?> PredictedStates { get; set; }
 
     /// <summary>
     /// Attempts to find a plan that completes the tasks in order using backtracking.

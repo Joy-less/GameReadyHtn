@@ -39,7 +39,7 @@ public class HtnConstantValue() : HtnValue {
     /// <summary>
     /// The constant value.
     /// </summary>
-    public required object? Value;
+    public required object? Value { get; set; }
 
     /// <summary>
     /// Constructs a <see cref="HtnConstantValue"/> in-line.
@@ -62,7 +62,7 @@ public class HtnStateValue() : HtnValue {
     /// <summary>
     /// The state to query.
     /// </summary>
-    public required object State;
+    public required object State { get; set; }
 
     /// <summary>
     /// Constructs a <see cref="HtnStateValue"/> in-line.
@@ -85,15 +85,15 @@ public class HtnStateOperationValue() : HtnValue {
     /// <summary>
     /// The state to query.
     /// </summary>
-    public required object State;
+    public required object State { get; set; }
     /// <summary>
     /// The operation to perform.
     /// </summary>
-    public required HtnOperation Operation;
+    public required HtnOperation Operation { get; set; }
     /// <summary>
     /// The operand for the operation.
     /// </summary>
-    public required HtnValue Operand;
+    public required HtnValue Operand { get; set; }
 
     /// <summary>
     /// Constructs a <see cref="HtnStateOperationValue"/> in-line.
@@ -118,7 +118,7 @@ public class HtnDynamicValue() : HtnValue {
     /// <summary>
     /// The function that returns the value.
     /// </summary>
-    public required Func<object?> GetValue;
+    public required Func<object?> GetValue { get; set; }
 
     /// <summary>
     /// Constructs a <see cref="HtnDynamicValue"/> in-line.

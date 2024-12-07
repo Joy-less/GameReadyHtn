@@ -9,15 +9,15 @@ public class HtnEffect() {
     /// <summary>
     /// The state to change.
     /// </summary>
-    public required object State;
+    public required object State { get; set; }
     /// <summary>
     /// The operation to perform.
     /// </summary>
-    public required HtnOperation Operation;
+    public required HtnOperation Operation { get; set; }
     /// <summary>
     /// The operand for the operation.
     /// </summary>
-    public required HtnValue Value;
+    public required HtnValue Value { get; set; }
 
     /// <summary>
     /// Constructs a <see cref="HtnEffect"/> in-line.
