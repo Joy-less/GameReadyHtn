@@ -23,11 +23,6 @@ public class HtnCondition() {
     /// Default: false
     /// </summary>
     public bool BestEffort = false;
-    /// <summary>
-    /// A function that returns a lower number when the value is closer to the target.<br/>
-    /// By default, uses 0 if met and 2 if not met.
-    /// </summary>
-    public DistanceFunction? EstimateDistance = null;
 
     /// <summary>
     /// Constructs a <see cref="HtnCondition"/> in-line.
@@ -54,8 +49,3 @@ public class HtnCondition() {
         return Comparison.IsMetOrCloser(Value.Evaluate(States), States.GetValueOrDefault(State), PreviousStates.GetValueOrDefault(State));
     }
 }
-
-/// <summary>
-/// A function that returns the distance between the value and the target.
-/// </summary>
-public delegate double DistanceFunction(dynamic? Value, dynamic? TargetValue);
