@@ -1,4 +1,4 @@
-﻿namespace GameReadyHtn;
+namespace GameReadyHtn;
 
 /// <summary>
 /// Ways to operate two values.

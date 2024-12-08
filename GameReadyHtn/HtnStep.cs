@@ -1,4 +1,4 @@
-﻿namespace GameReadyHtn;
+namespace GameReadyHtn;
 
 internal sealed class HtnStep {
     public required HtnStep? Previous;

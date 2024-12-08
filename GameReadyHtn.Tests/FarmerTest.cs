@@ -1,4 +1,4 @@
-﻿namespace GameReadyHtn.Tests;
+namespace GameReadyHtn.Tests;
 
 [TestClass]
 public class FarmerTest {

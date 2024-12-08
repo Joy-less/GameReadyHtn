@@ -1,4 +1,4 @@
-﻿namespace GameReadyHtn;
+namespace GameReadyHtn;
 
 /// <summary>
 /// A set of extension methods used in <see cref="GameReadyHtn"/>.

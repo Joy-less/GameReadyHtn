@@ -1,4 +1,4 @@
-﻿namespace GameReadyHtn;
+namespace GameReadyHtn;
 
 /// <summary>
 /// A task a <see cref="HtnAgent"/> can perform, changing its states.
