@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="GameReadyHtn.Tests/GameReadyHtn.Tests.csproj" />
+  <Project Path="GameReadyHtn/GameReadyHtn.csproj" />
+</Solution>
