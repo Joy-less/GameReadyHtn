@@ -12,7 +12,7 @@ public abstract class HtnValue {
     /// </summary>
     public abstract object? Evaluate(IDictionary<object, object?> States);
 
-#pragma warning disable CS1591
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public static implicit operator HtnValue(bool Value) => new HtnConstantValue(Value);
     public static implicit operator HtnValue(sbyte Value) => new HtnConstantValue(Value);
     public static implicit operator HtnValue(byte Value) => new HtnConstantValue(Value);
@@ -30,6 +30,11 @@ public abstract class HtnValue {
     public static implicit operator HtnValue(double Value) => new HtnConstantValue(Value);
     public static implicit operator HtnValue(decimal Value) => new HtnConstantValue(Value);
     public static implicit operator HtnValue(string Value) => new HtnConstantValue(Value);
+    public static implicit operator HtnValue(char Value) => new HtnConstantValue(Value);
+    public static implicit operator HtnValue(DateTime Value) => new HtnConstantValue(Value);
+    public static implicit operator HtnValue(DateTimeOffset Value) => new HtnConstantValue(Value);
+    public static implicit operator HtnValue(TimeSpan Value) => new HtnConstantValue(Value);
+    public static implicit operator HtnValue(Guid Value) => new HtnConstantValue(Value);
 #pragma warning restore CS1591
 }
 /// <summary>
