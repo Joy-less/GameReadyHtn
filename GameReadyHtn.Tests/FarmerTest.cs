@@ -1,6 +1,5 @@
 namespace GameReadyHtn.Tests;
 
-[TestClass]
 public class FarmerTest {
     public static readonly HtnAgent Agent = new() {
         States = new() {
@@ -56,10 +55,10 @@ public class FarmerTest {
         },
     };
 
-    [TestMethod]
+    [Fact]
     public void Test() {
-        Assert.IsNotNull(Agent.FindPlan());
-        Assert.IsNotNull(Agent.FindPlan()?.Tasks.FirstOrDefault());
+        Assert.NotNull(Agent.FindPlan());
+        Assert.NotNull(Agent.FindPlan()?.Tasks.FirstOrDefault());
     }
 }
 public enum FarmerState {
