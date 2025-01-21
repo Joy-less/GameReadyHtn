@@ -1,5 +1,8 @@
 namespace GameReadyHtn;
 
+/// <summary>
+/// A single planned task in a <see cref="HtnPlan"/>.
+/// </summary>
 internal sealed class HtnStep {
     public required HtnStep? Previous;
     public required HtnPrimitiveTask? Task;
