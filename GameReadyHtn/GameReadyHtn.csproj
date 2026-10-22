@@ -1,16 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <VersionPrefix>4.1</VersionPrefix>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <WarningLevel>9999</WarningLevel>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>Game Ready Htn</Title>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>An easy-to-use implementation of Hierarchical Task Networks.</Description>
     <PackageProjectUrl>https://github.com/Joy-less/GameReadyHtn</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Joy-less/GameReadyHtn</RepositoryUrl>
@@ -19,6 +21,7 @@
     <PackageTags>HTN, AI, plan</PackageTags>
     <Authors>Joyless</Authors>
   </PropertyGroup>
+
   <ItemGroup>
     <None Include="../Assets/Icon.jpg">
       <Pack>True</Pack>
