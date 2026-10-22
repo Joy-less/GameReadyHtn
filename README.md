@@ -1,5 +1,3 @@
-<img src="https://github.com/Joy-less/GameReadyHtn/blob/main/Assets/Icon.jpg?raw=true" width=256/>
-
 # Game Ready Htn
 
 [![NuGet](https://img.shields.io/nuget/v/GameReadyHtn.svg)](https://www.nuget.org/packages/GameReadyHtn)
