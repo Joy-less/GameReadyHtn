@@ -35,7 +35,7 @@ public class HtnPrimitiveTask(object? Name = null) : HtnTask(Name) {
     /// <summary>
     /// Changes the given states by the effects of the task.
     /// </summary>
-    public void UpdateStates(IDictionary<object, object?> States) {
+    public void UpdateStates(IDictionary<object, double> States) {
         foreach (HtnEffect Effect in Effects) {
             States[Effect.State] = Effect.PredictState(States);
         }
@@ -43,8 +43,8 @@ public class HtnPrimitiveTask(object? Name = null) : HtnTask(Name) {
     /// <summary>
     /// Gets the predicted states after the task is performed.
     /// </summary>
-    public Dictionary<object, object?> PredictStates(IDictionary<object, object?> States) {
-        Dictionary<object, object?> PredictedStates = new(States);
+    public Dictionary<object, double> PredictStates(IDictionary<object, double> States) {
+        Dictionary<object, double> PredictedStates = new(States);
         UpdateStates(PredictedStates);
         return PredictedStates;
     }

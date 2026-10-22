@@ -6,7 +6,7 @@ namespace GameReadyHtn;
 internal sealed class HtnStep {
     public required HtnStep? Previous;
     public required HtnPrimitiveTask? Task;
-    public required Dictionary<object, object?> PredictedStates;
+    public required Dictionary<object, double> PredictedStates;
     public required int TotalSteps;
 
     /// <summary>

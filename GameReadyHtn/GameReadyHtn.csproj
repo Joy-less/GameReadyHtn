@@ -22,6 +22,11 @@
     <Authors>Joyless</Authors>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <IsAotCompatible>true</IsAotCompatible>
+    <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="../Assets/Icon.jpg">
       <Pack>True</Pack>

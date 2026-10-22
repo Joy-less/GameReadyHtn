@@ -19,7 +19,7 @@ public class HtnCondition() {
     /// </summary>
     public required HtnValue Value { get; set; }
     /// <summary>
-    /// If true, plans that get the agent closer to the condition will be considered, even if they won't reach it. The values must be numbers.<br/>
+    /// If true, plans that get the agent closer to the condition will be considered, even if they won't reach it.<br/>
     /// Default: false
     /// </summary>
     public bool BestEffort { get; set; } = false;
@@ -36,13 +36,13 @@ public class HtnCondition() {
     /// <summary>
     /// Returns true if the condition is met with the given states.
     /// </summary>
-    public bool IsMet(IDictionary<object, object?> States) {
+    public bool IsMet(IDictionary<object, double> States) {
         return Comparison.IsMet(States.GetValueOrDefault(State), Value.Evaluate(States));
     }
     /// <summary>
     /// Returns true if the condition is met with the given states, or closer to being met than with the previous states.
     /// </summary>
-    public bool IsMetOrCloser(IDictionary<object, object?> States, IDictionary<object, object?> PreviousStates) {
+    public bool IsMetOrCloser(IDictionary<object, double> States, IDictionary<object, double> PreviousStates) {
         if (!BestEffort) {
             return IsMet(States);
         }

@@ -7,7 +7,7 @@ public static class HtnExtensions {
     /// <summary>
     /// Compares the first value with the second value.
     /// </summary>
-    public static bool IsMet(this HtnComparison Comparison, dynamic? ValueA, dynamic? ValueB) {
+    public static bool IsMet(this HtnComparison Comparison, double ValueA, double ValueB) {
         return Comparison switch {
             HtnComparison.EqualTo => ValueA == ValueB,
             HtnComparison.NotEqualTo => ValueA != ValueB,
@@ -21,7 +21,7 @@ public static class HtnExtensions {
     /// <summary>
     /// Compares the value with the target, or the value with the previous value.
     /// </summary>
-    public static bool IsMetOrCloser(this HtnComparison Comparison, dynamic? Target, dynamic? Value, dynamic? PreviousValue) {
+    public static bool IsMetOrCloser(this HtnComparison Comparison, double Target, double Value, double PreviousValue) {
         return Comparison switch {
             HtnComparison.EqualTo => (Value == Target) || (Math.Abs(Value - Target) < Math.Abs(PreviousValue - Target)),
             HtnComparison.NotEqualTo => (Value != Target) || (Math.Abs(Value - Target) > Math.Abs(PreviousValue - Target)),
@@ -35,7 +35,7 @@ public static class HtnExtensions {
     /// <summary>
     /// Performs the operation on the first value with the second value.
     /// </summary>
-    public static dynamic? Operate(this HtnOperation Operation, dynamic? ValueA, dynamic? ValueB) {
+    public static double Operate(this HtnOperation Operation, double ValueA, double ValueB) {
         return Operation switch {
             HtnOperation.SetTo => ValueB,
             HtnOperation.IncreaseBy => ValueA + ValueB,
@@ -43,12 +43,13 @@ public static class HtnExtensions {
             HtnOperation.MultiplyBy => ValueA * ValueB,
             HtnOperation.DivideBy => ValueA / ValueB,
             HtnOperation.ModuloBy => ValueA % ValueB,
-            HtnOperation.ExponentiateBy => Math.Pow(Convert.ToDouble(ValueA), Convert.ToDouble(ValueB)),
+            HtnOperation.ExponentiateBy => Math.Pow(ValueA, ValueB),
             _ => throw new NotImplementedException()
         };
     }
+
     /// <inheritdoc cref="CollectionExtensions.GetValueOrDefault{TKey, TValue}(IReadOnlyDictionary{TKey, TValue}, TKey, TValue)"/>
-    public static TValue? GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> Dictionary, TKey Key, TValue? Default = default) {
+    internal static TValue? GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> Dictionary, TKey Key, TValue? Default = default) {
         return Dictionary.TryGetValue(Key, out TValue? Value) ? Value : Default;
     }
 }

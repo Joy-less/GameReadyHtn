@@ -13,7 +13,7 @@ public class HtnAgent(object? Name = null) {
     /// <summary>
     /// The values describing the agent's current state.
     /// </summary>
-    public required ConcurrentDictionary<object, object?> States { get; set; }
+    public required ConcurrentDictionary<object, double> States { get; set; }
     /// <summary>
     /// The root task the agent will perform, changing its states.
     /// </summary>
@@ -24,15 +24,9 @@ public class HtnAgent(object? Name = null) {
     public List<HtnSensor> Sensors { get; set; } = [];
 
     /// <summary>
-    /// Gets the current value of the given state, casting it to the given type.
+    /// Gets the current value of the given state.
     /// </summary>
-    public T GetState<T>(object State) {
-        return (T)States.GetValueOrDefault(State)!;
-    }
-    /// <summary>
-    /// Gets the current value of the given state, cast to a <see langword="dynamic"/>.
-    /// </summary>
-    public dynamic? GetState(object State) {
+    public double GetState(object State) {
         return States.GetValueOrDefault(State);
     }
     /// <summary>
@@ -58,7 +52,7 @@ public class HtnAgent(object? Name = null) {
     /// <summary>
     /// Returns true if the task is valid for this agent with the given states.
     /// </summary>
-    public bool IsTaskValid(HtnTask Task, IDictionary<object, object?> States) {
+    public bool IsTaskValid(HtnTask Task, IDictionary<object, double> States) {
         if (Task.IsValidOverride(this) is bool Override) {
             return Override;
         }

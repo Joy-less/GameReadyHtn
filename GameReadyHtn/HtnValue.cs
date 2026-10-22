@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
 
 namespace GameReadyHtn;
 
@@ -10,32 +9,12 @@ public abstract class HtnValue {
     /// <summary>
     /// Returns the final value to be used.
     /// </summary>
-    public abstract object? Evaluate(IDictionary<object, object?> States);
+    public abstract double Evaluate(IDictionary<object, double> States);
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-    public static implicit operator HtnValue(bool Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(sbyte Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(byte Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(short Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(ushort Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(int Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(uint Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(long Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(ulong Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(Int128 Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(UInt128 Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(BigInteger Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(Half Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(float Value) => new HtnConstantValue(Value);
+    /// <summary>
+    /// Constructs a <see cref="HtnConstantValue"/> from a <see cref="double"/>.
+    /// </summary>
     public static implicit operator HtnValue(double Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(decimal Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(string Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(char Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(DateTime Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(DateTimeOffset Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(TimeSpan Value) => new HtnConstantValue(Value);
-    public static implicit operator HtnValue(Guid Value) => new HtnConstantValue(Value);
-#pragma warning restore CS1591
 }
 /// <summary>
 /// The value of a constant.
@@ -44,19 +23,19 @@ public class HtnConstantValue() : HtnValue {
     /// <summary>
     /// The constant value.
     /// </summary>
-    public required object? Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Constructs a <see cref="HtnConstantValue"/> in-line.
     /// </summary>
     [SetsRequiredMembers]
-    public HtnConstantValue(object? Value) : this() {
+    public HtnConstantValue(double Value) : this() {
         this.Value = Value;
     }
     /// <summary>
     /// Returns the constant value.
     /// </summary>
-    public override object? Evaluate(IDictionary<object, object?> States) {
+    public override double Evaluate(IDictionary<object, double> States) {
         return Value;
     }
 }
@@ -79,7 +58,7 @@ public class HtnStateValue() : HtnValue {
     /// <summary>
     /// Returns the state value.
     /// </summary>
-    public override object? Evaluate(IDictionary<object, object?> States) {
+    public override double Evaluate(IDictionary<object, double> States) {
         return States.GetValueOrDefault(State);
     }
 }
@@ -112,7 +91,7 @@ public class HtnStateOperationValue() : HtnValue {
     /// <summary>
     /// Returns the state value after the operation.
     /// </summary>
-    public override object? Evaluate(IDictionary<object, object?> States) {
+    public override double Evaluate(IDictionary<object, double> States) {
         return Operation.Operate(States.GetValueOrDefault(State), Operand.Evaluate(States));
     }
 }
@@ -123,19 +102,19 @@ public class HtnDynamicValue() : HtnValue {
     /// <summary>
     /// The function that returns the value.
     /// </summary>
-    public required Func<object?> GetValue { get; set; }
+    public required Func<double> GetValue { get; set; }
 
     /// <summary>
     /// Constructs a <see cref="HtnDynamicValue"/> in-line.
     /// </summary>
     [SetsRequiredMembers]
-    public HtnDynamicValue(Func<object?> GetValue) : this() {
+    public HtnDynamicValue(Func<double> GetValue) : this() {
         this.GetValue = GetValue;
     }
     /// <summary>
     /// Returns the state value after the operation.
     /// </summary>
-    public override object? Evaluate(IDictionary<object, object?> States) {
+    public override double Evaluate(IDictionary<object, double> States) {
         return GetValue();
     }
 }

@@ -15,7 +15,7 @@ public class HtnPlan {
     /// <summary>
     /// The agent's predicted states after the plan is performed.
     /// </summary>
-    public required Dictionary<object, object?> PredictedStates { get; set; }
+    public required Dictionary<object, double> PredictedStates { get; set; }
 
     /// <summary>
     /// Attempts to find a plan that completes the tasks in order using backtracking.
